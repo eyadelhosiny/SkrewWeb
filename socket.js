@@ -1,7 +1,7 @@
 import { io } from 'socket.io-client';
 
 // Initialize Socket.IO
-const socket = io('http://localhost:3000'); // Replace with your backend URL
+const socket = io(process.env.BASE_URL); // Replace with your backend URL
 
 // Room code (shared across the app)
 let roomCode;
