@@ -21,7 +21,7 @@ async function createRoom() {
     }
 
     // Call the backend API to create a room
-    const response = await fetch(`${process.env.BASE_URL}/api/room/create`, {
+    const response = await fetch(`https://2fcf1771-c7b1-4541-a5c3-06c51e3fa758.us-east-1.cloud.genez.io/api/room/create`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: playerName, maxPlayers: 4 }), // Adjust maxPlayers as needed
@@ -43,7 +43,7 @@ async function canJoinRoom(name, code) {
     }
 
     // Call the backend API to check if the room is valid
-    const response = await fetch(`${process.env.BASE_URL}/api/room/join`, {
+    const response = await fetch(`https://2fcf1771-c7b1-4541-a5c3-06c51e3fa758.us-east-1.cloud.genez.io/api/room/join`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, code }),
