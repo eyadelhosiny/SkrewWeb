@@ -1,80 +1,87 @@
-import { isRoomValid, initPlayer, initRoom } from "./firebase.js"
+import { setRoomCode } from './socket.js'; // Import setRoomCode from socket.js
 
-let playerName
+let playerName;
 
-document.addEventListener('DOMContentLoaded', logIn)
+document.addEventListener('DOMContentLoaded', logIn);
 
 function logIn() {
-    addEventHandlers()
+    addEventHandlers();
 }
 
-let clicked = false
 function addEventHandlers() {
-    document.getElementById('join-room-btn').addEventListener('click', joinRoom)
-    document.getElementById('create-room-btn').addEventListener('click', createRoom)
+    document.getElementById('join-room-btn').addEventListener('click', joinRoom);
+    document.getElementById('create-room-btn').addEventListener('click', createRoom);
 }
 
 async function createRoom() {
-    if(clicked) return
-    // clicked = true
-
-    const playerName = getPlayerName()
-    ////console.log('name is', playerName)
-    if(playerName == ""){
-        alert('name can not be empty')
-        return false
+    const playerName = getPlayerName();
+    if (playerName === "") {
+        alert('Name cannot be empty');
+        return;
     }
-    clicked = true
-    const code = await initRoom(playerName)
-    ////console.log('room created')
-    initPlayer(playerName, code)
-    goToWaitingRoom(code)
+
+    // Call the backend API to create a room
+    const response = await fetch(`${process.env.BASE_URL}/api/room/create`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: playerName, maxPlayers: 4 }), // Adjust maxPlayers as needed
+    });
+
+    const data = await response.json();
+    if (data.code) {
+        setRoomCode(data.code); // Set the room code using socket.js
+        goToWaitingRoom(data.code);
+    } else {
+        alert('Failed to create room');
+    }
 }
 
 async function canJoinRoom(name, code) {
-    ////console.log('name is', name)
-    if(name == ""){
-        alert('name can not be empty')
-        return false
-    }
-    
-    ////console.log('code is', code)
-    const exist  = await isRoomValid(code)
-    if(!exist){
-        alert('Room is full or does\'t exist')
-        return false
+    if (name === "") {
+        alert('Name cannot be empty');
+        return false;
     }
 
-    return true
+    // Call the backend API to check if the room is valid
+    const response = await fetch(`${process.env.BASE_URL}/api/room/join`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, code }),
+    });
+
+    const data = await response.json();
+    if (data.playerId) {
+        setRoomCode(code); // Set the room code using socket.js
+        return true;
+    } else {
+        alert('Room is full or does not exist');
+        return false;
+    }
 }
 
 async function joinRoom() {
-    if(clicked) return
-    // clicked = true
+    const playerName = getPlayerName();
+    const code = getRoomCode();
 
-    const playerName = getPlayerName()
-    const code = getRoomCode()
-
-    const canJoin = await canJoinRoom(playerName, code)
-    if(!canJoin){
-        return
+    const canJoin = await canJoinRoom(playerName, code);
+    if (!canJoin) {
+        return;
     }
-    clicked = true
-    ////console.log('can join room')
-    initPlayer(playerName, code)
-    goToWaitingRoom(code)
+
+    goToWaitingRoom(code);
 }
 
-function getPlayerName(){
-    return document.getElementById('player-name-txt').value
+function getPlayerName() {
+    return document.getElementById('player-name-txt').value;
 }
 
-function getRoomCode(){
-    return document.getElementById('room-code-txt').value
+function getRoomCode() {
+    return document.getElementById('room-code-txt').value;
 }
 
-function goToWaitingRoom(code){
-    document.getElementById('main-area').style.visibility = 'visible'
-    document.getElementById('room-code').innerHTML += code
-    document.getElementById('log-in-page').style.top = '-100%'
+function goToWaitingRoom(code) {
+    document.getElementById('main-container').style.visibility = 'visible';
+    document.getElementById('dashboard').style.visibility = 'visible';
+    document.getElementById('log-in-page').style.top = '-100%';
+    document.getElementById('room-code').innerHTML += code;
 }
