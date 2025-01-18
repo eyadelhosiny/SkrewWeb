@@ -1,4 +1,4 @@
-import { io } from 'socket.io-client';
+// import { io } from 'socket.io-client';
 
 // Initialize Socket.IO
 const socket = io(process.env.BASE_URL); // Replace with your backend URL
