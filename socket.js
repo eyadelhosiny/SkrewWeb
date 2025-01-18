@@ -1,7 +1,7 @@
 // import { io } from 'socket.io-client';
 
 // Initialize Socket.IO
-const socket = io(process.env.BASE_URL); // Replace with your backend URL
+const socket = io('https://2fcf1771-c7b1-4541-a5c3-06c51e3fa758.us-east-1.cloud.genez.io'); // Replace with your backend URL
 
 // Room code (shared across the app)
 let roomCode;
