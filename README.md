@@ -1,1 +1,1 @@
-# SkrewWeb
+# Play with your friends. [click here](https://yusfgus.github.io/SkreWeb/)

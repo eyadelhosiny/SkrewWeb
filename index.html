@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkreWeb</title>
+    <link rel="icon" href="images/icon3.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="button.css">
+</head>
+
+<body>
+
+    <main id="main-area">
+        <button id="skrew-button">
+            <span></span>
+        </button>
+        <div id="main-container">
+            <span id="hint-msg"></span>
+            <div id="deck-cards-container" class="cards-container">
+                <!-- <button id="skrew-button-pushable" role="button">
+                    <span class="skrew-button-shadow"></span>
+                    <span class="skrew-button-edge"></span>
+                    <span class="skrew-button-front text">
+                      SKREW
+                    </span>
+                  </button> -->
+                <div id="secondaryDeck" class="deck"></div>
+                <div id="primaryDeck" class="deck">
+                    <!-- <div class="card" id="this.name">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <img src="images/-1.png" alt="king image" class="card-img">
+                            </div>
+                            <div class="card-back">
+                                <img src="images/back.png" alt="back image" class="card-img">
+                            </div>
+                        </div>
+                    </div>  -->
+                </div>
+            </div>
+        </div>
+        <div id="bottom-container">
+            <div id="player1-cards-container2" class="cards-container2"></div>
+            <div id="player1-cards-container" class="cards-container player"></div>
+            <div id="player1-name-container" class="player-name-container"><span></span></div>
+            <div id="player1-turn-line" class="turn-line"></div>
+        </div>
+        <div id="right-container">
+            <div id="player2-cards-container2" class="cards-container2"></div>
+            <div id="player2-cards-container" class="cards-container player"></div>
+            <div id="player2-name-container" class="player-name-container"><span></span></div>
+            <div id="player2-turn-line" class="turn-line"></div>
+        </div>
+        <div id="top-container">
+            <div id="player3-cards-container2" class="cards-container2"></div>
+            <div id="player3-cards-container" class="cards-container player"></div>
+            <div id="player3-name-container" class="player-name-container"><span></span></div>
+            <div id="player3-turn-line" class="turn-line"></div>
+        </div>
+        <div id="left-container">
+            <div id="player4-cards-container2" class="cards-container2"></div>
+            <div id="player4-cards-container" class="cards-container player"></div>
+            <div id="player4-name-container" class="player-name-container"><span></span></div>
+            <div id="player4-turn-line" class="turn-line"></div>
+        </div>
+        <div id="room-code-div">
+            <span id="room-code">room code: </span>
+            <div id="copy"></div>
+        </div>
+        <div id="dashboard">
+            <div id="round-name"></div>
+            <div id="score-table">
+                <div id="header-score-row" class="score-row">
+                    <table class="row-to-right">
+                        <tr>
+                            <td>المجموع</td>
+                            <td>الجولة الخامسة</td>
+                            <td>الجولة الرابعة</td>
+                            <td>الجولة الثالثة</td>
+                            <td>الجولة الثانية</td>
+                            <td>الجولة الاولى</td>
+                            <td>اللاعب</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="score-row">
+                    <table id="player1-score-row" class="row-to-left">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="score-row">
+                    <table id="player2-score-row" class="row-to-right">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="score-row">
+                    <table id="player3-score-row" class="row-to-left">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="score-row">
+                    <table id="player4-score-row" class="row-to-right">
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="log-in-page">
+            <!-- <div id="warning">تحذير: اللعبة لا تزال تحت التطوير وقد تتعطل في اي وقت</div> -->
+            <div id="log-in-container">
+                <input type="text" id="player-name-txt" placeholder=" Your name" maxlength="15">
+                <div id="room-container">
+                    <div id="join-room-container">
+                        <input type="text" id="room-code-txt" placeholder=" Room code" maxlength="6" autocomplete="off">
+                        <button id="join-room-btn">Join</button>
+                    </div>
+                    <div id="create-room-container">
+                        <button id="create-room-btn"><span>or </span>Create Room</button>
+                        <!-- <input type="radio" name="players-num" id="players-num-2" value="2">
+                        <label for="players-num-2" class="players-num-label">2</label>
+
+                        <input type="radio" name="players-num" id="players-num-3" value="3">
+                        <label for="players-num-3" class="players-num-label">3</label>
+
+                        <input type="radio" name="players-num" id="players-num-4" value="4" checked>
+                        <label for="players-num-4" class="players-num-label">4</label> -->
+                        <div class="radio-buttons-container">
+                            <span>for</span>
+                            <div class="radio-button">
+                                <input name="players-num" id="players-num-2" class="radio-button__input" type="radio" value="2">
+                                <label for="players-num-2" class="radio-button__label">
+                                    <span class="radio-button__custom"></span>
+                                    2
+                                </label>
+                            </div>
+                            <div class="radio-button">
+                                <input name="players-num" id="players-num-3" class="radio-button__input" type="radio" value="3">
+                                <label for="players-num-3" class="radio-button__label">
+                                    <span class="radio-button__custom"></span>
+                                    3
+                                </label>
+                            </div>
+                            <div class="radio-button">
+                                <input name="players-num" id="players-num-4" class="radio-button__input" type="radio" value="4" checked>
+                                <label for="players-num-4" class="radio-button__label">
+                                    <span class="radio-button__custom"></span>
+                                    4
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div id="contact">لو اللعبة علقت معاك ابعتلي 01158689513</div> -->
+            <div id="contact">For suggestions or complaints
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScg-wLMqyCFuKz8nASw0TbNUridRrM7FRm7NP-syWeim_vZCA/viewform?usp=sf_link" target="_blank" >click here</a>
+            </div>
+        </div>
+    </main>
+</body>
+<script src="main.js" type="module"></script>
+<script src="firebase.js" type="module"></script>
+<script src="logIn.js" type="module"></script>
+
+</html>
