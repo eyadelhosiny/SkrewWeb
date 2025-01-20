@@ -1,7 +1,7 @@
 // import { io } from 'socket.io-client';
 
 // Initialize Socket.IO
-const socket = io('https://skrew-backend.glitch.me/'); // Replace with your backend URL
+const socket = io('https://de01.uniplex.xyz:1587'); // Replace with your backend URL
 
 // Room code (shared across the app)
 let roomCode;
