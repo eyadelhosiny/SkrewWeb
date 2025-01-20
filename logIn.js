@@ -21,7 +21,7 @@ async function createRoom() {
     }
 
     // Call the backend API to create a room
-    const response = await fetch(`https://skrew-backend.glitch.me/api/room/create`, {
+    const response = await fetch(`https://de01.uniplex.xyz:1587/api/room/create`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name: playerName, maxPlayers: 4 }), // Adjust maxPlayers as needed
@@ -43,7 +43,7 @@ async function canJoinRoom(name, code) {
     }
 
     // Call the backend API to check if the room is valid
-    const response = await fetch(`https://skrew-backend.glitch.me/api/room/join`, {
+    const response = await fetch(`https://de01.uniplex.xyz:1587/api/room/join`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, code }),
